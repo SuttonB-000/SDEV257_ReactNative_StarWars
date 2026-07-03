@@ -1,13 +1,13 @@
 import { Platform, StyleSheet, StatusBar } from "react-native";
-expost default StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
     backgroundColor: "ghostwhite",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     ...Platform.select({
-      ios: { paddingTop: 20},
-      android: { paddingTop: StatusBar.currentHeight  },
+      ios: { paddingTop: 20 },
+      android: { paddingTop: StatusBar.currentHeight },
     }),
     box: {
       height: 100,
@@ -23,5 +23,5 @@ expost default StyleSheet.create({
       color: "darkslategray",
       fontWeight: "bold",
     },
-  });
-
+  },
+});
