@@ -5,7 +5,7 @@ export const getPlanets = (id) => {
   return fetch(`${baseUrl}planets/${id}/`).then((response) => response.json());
 };
 
-//return films
+//return Films
 export const getFilms = (id) => {
   return fetch(`${baseUrl}films/${id}/`).then((response) => response.json());
 };
