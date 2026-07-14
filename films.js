@@ -3,20 +3,23 @@ import { View, Text } from "react-native";
 import { getFilms } from "./Swapi.js";
 import styles from "./styles.js";
 
+// function films is what displays the film from the API 
 export default function Films() {
-  const [films, setFilms] = useState([]);
+  // sets film and setFilms to useState with an empty array
+  const [film, setFilms] = useState([]);
 
+  // 
   useEffect(() => {
-    getFilms().then((data) => {
-      setFilms(data.results);
+    getFilms(1).then((film) => {
+      // uncomment the console.log to see the film object in the console
+      // console.log(film);
+      setFilms(film.result.properties);
     });
   }, []);
 
   return (
     <View style={styles.container}>
-      {films.map((film) => (
-        <Text key={film.uid}> {film.properties.title} </Text>
-      ))}
+      <Text>{film.title}</Text>
     </View>
   );
 }

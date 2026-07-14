@@ -1,4 +1,4 @@
-const baseUrl = "https://swapi.tech/api/";
+const baseUrl = "https://www.swapi.tech/api/";
 
 //return Planets
 export const getPlanets = (id) => {
