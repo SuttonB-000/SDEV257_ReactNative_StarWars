@@ -12,19 +12,12 @@ const Drawer = createDrawerNavigator();
 
 const Base_Url = "https://swapi.tech/api/";
 
-// function to return planets json
-// for test returns planets with id 1
-const getPlanets = () => {
-  return fetch(`${Base_Url}planets/1/`)
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error(error);
-    });
-};
 
 export default function App() {
   return (
+    // tab or drawer navigation
     <NavigationContainer>
+      {/* identifies platform viewport */}
       {Platform.OS === "ios" && (
         <Tab.Navigator>
           <Tab.Screen name="Films" component={Films} />

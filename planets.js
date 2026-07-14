@@ -3,20 +3,23 @@ import { View, Text } from "react-native";
 import { getPlanets } from "./Swapi.js";
 import styles from "./styles.js";
 
+
+// function to return planet data from SWAPI
 export default function Planets() {
-  const [planets, setPlanets] = useState([]);
+  const [planet, setPlanets] = useState([]);
 
   useEffect(() => {
-    getPlanets().then((data) => {
-      setPlanets(data.results);
+    // getPlanets id is set to one for proof of concept
+    getPlanets(1).then((planet) => {
+      // Veiw output of json object
+      console.log(planet);
+      setPlanets(planet.result.properties);
     });
   }, []);
 
   return (
     <View stye={styles.container}>
-      {films.map((film) => (
-        <Text key={planets.uid}> {film.properties.title} </Text>
-      ))}
+        <Text > {planet.name} </Text>
     </View>
   );
 }
