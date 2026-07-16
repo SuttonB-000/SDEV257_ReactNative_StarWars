@@ -22,6 +22,7 @@ export default function App() {
         <Tab.Navigator>
           <Tab.Screen name="Films" component={Films} />
           <Tab.Screen name="Spaceships" component={Spaceships} />
+
           <Tab.Screen name="Planets" component={Planets} />
         </Tab.Navigator>
       )}{" "}
