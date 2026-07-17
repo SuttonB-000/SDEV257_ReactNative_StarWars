@@ -20,9 +20,9 @@ export default function App() {
       {/* identifies platform viewport */}
       {Platform.OS === "ios" && (
         <Tab.Navigator>
-          <Tab.Screen name="Films" component={Films} />
           <Tab.Screen name="Spaceships" component={Spaceships} />
-
+          <Tab.Screen name="Films" component={Films} />
+          
           <Tab.Screen name="Planets" component={Planets} />
         </Tab.Navigator>
       )}{" "}

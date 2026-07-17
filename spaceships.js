@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { getSpaceships } from "./Swapi.js";
 import styles from "./styles.js";
 
 // function displays spaceship data from the API
 export default function Spaceships() {
-  const [spaceship, setSpaceships] = useState([]);
+  const [spaceships, setSpaceships] = useState([]);
 
   useEffect(() => {
-    // using id 9 for proof of concept
-    getSpaceships()
-      .then((spaceship) => {
-      setSpaceships(spaceship.result.properties);
-      })
-      .then(spaceship => console.log(spaceship))
-      .catch(err => console.error(err)) 
-
+    getSpaceships().then((spaceships) => {
+      console.log(spaceships);
+      setSpaceships(spaceships.results);
+    });
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text> {spaceship.name} </Text>
+      <FlatList
+        data={spaceships}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
+      />
     </View>
   );
 }
