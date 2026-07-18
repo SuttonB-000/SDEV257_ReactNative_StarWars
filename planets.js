@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList} from "react-native";
 import { getPlanets } from "./Swapi.js";
 import styles from "./styles.js";
+import Input from "./components/input.js"
 
 
 // function to return planet data from SWAPI
@@ -19,6 +20,7 @@ export default function Planets() {
 
   return (
     <View style={styles.container}>
+      <Input placeholder="search..." />
       <FlatList
         data={planets}
         renderItem={({ item }) => <Text>{item.name}</Text>}

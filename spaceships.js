@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import { getSpaceships } from "./Swapi.js";
 import styles from "./styles.js";
+import Input from "./components/input.js";
 
 // function displays spaceship data from the API
 export default function Spaceships() {
@@ -16,6 +17,7 @@ export default function Spaceships() {
 
   return (
     <View style={styles.container}>
+      <Input placeholder="search..." />
       <FlatList
         data={spaceships}
         renderItem={({ item }) => <Text>{item.name}</Text>}

@@ -25,7 +25,7 @@ export default function Films() {
 
   return (
     <View style={styles.container}>
-      <Input placeholder="search...:" />
+      <Input placeholder="search..." />
       <FlatList
         data={films}
         renderItem={({ item }) => <Text>{item.properties.title}</Text>}
