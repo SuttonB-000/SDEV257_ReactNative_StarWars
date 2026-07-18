@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import { getFilms } from "./Swapi.js";
 import styles from "./styles.js";
+import Input from "./components/input.js";
 // import { FlatList } from "react-native-gesture-handler";
 
 // function films is what displays the film from the API 
@@ -24,6 +25,7 @@ export default function Films() {
 
   return (
     <View style={styles.container}>
+      <Input placeholder="search...:" />
       <FlatList
         data={films}
         renderItem={({ item }) => <Text>{item.properties.title}</Text>}
