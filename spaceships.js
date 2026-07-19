@@ -4,7 +4,6 @@ import { getSpaceships } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
 
-// function displays spaceship data from the API
 export default function Spaceships() {
   const [spaceships, setSpaceships] = useState([]);
 
@@ -17,10 +16,20 @@ export default function Spaceships() {
 
   return (
     <View style={styles.container}>
-      <Input placeholder="search..." />
+      <Text style={styles.screenHeader}>Spaceships</Text>
+      <Input placeholder="Search starships..." />
       <FlatList
+        style={styles.list}
         data={spaceships}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        keyExtractor={(item) => item.uid ?? item.name}
+        renderItem={({ item }) => (
+          <View style={styles.itemCard}>
+            <Text style={styles.itemTitle}>{item.name}</Text>
+          </View>
+        )}
+        ListEmptyComponent={
+          <Text style={styles.emptyText}>Loading spaceships...</Text>
+        }
       />
     </View>
   );

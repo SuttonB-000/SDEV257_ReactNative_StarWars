@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList} from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { getPlanets } from "./Swapi.js";
 import styles from "./styles.js";
-import Input from "./components/input.js"
+import Input from "./components/input.js";
 
-
-// function to return planet data from SWAPI
 export default function Planets() {
   const [planets, setPlanets] = useState([]);
 
   useEffect(() => {
-    // getPlanets id is set to one for proof of concept
     getPlanets().then((planets) => {
-      // Veiw output of json object
       console.log(planets);
       setPlanets(planets.results);
     });
@@ -20,10 +16,20 @@ export default function Planets() {
 
   return (
     <View style={styles.container}>
-      <Input placeholder="search..." />
+      <Text style={styles.screenHeader}>Planets</Text>
+      <Input placeholder="Search planets..." />
       <FlatList
+        style={styles.list}
         data={planets}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        keyExtractor={(item) => item.uid ?? item.name}
+        renderItem={({ item }) => (
+          <View style={styles.itemCard}>
+            <Text style={styles.itemTitle}>{item.name}</Text>
+          </View>
+        )}
+        ListEmptyComponent={
+          <Text style={styles.emptyText}>Loading planets...</Text>
+        }
       />
     </View>
   );
