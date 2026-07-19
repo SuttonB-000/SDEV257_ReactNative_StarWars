@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { getSpaceships } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
@@ -16,21 +16,19 @@ export default function Spaceships() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.screenHeader}>Spaceships</Text>
-      <Input placeholder="Search starships..." />
-      <FlatList
-        style={styles.list}
-        data={spaceships}
-        keyExtractor={(item) => item.uid ?? item.name}
-        renderItem={({ item }) => (
-          <View style={styles.itemCard}>
-            <Text style={styles.itemTitle}>{item.name}</Text>
-          </View>
-        )}
-        ListEmptyComponent={
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.screenHeader}>Spaceships</Text>
+        <Input placeholder="Search starships..." />
+        {spaceships.length === 0 ? (
           <Text style={styles.emptyText}>Loading spaceships...</Text>
-        }
-      />
+        ) : (
+          spaceships.map((item) => (
+            <View style={styles.itemCard} key={item.uid ?? item.name}>
+              <Text style={styles.itemTitle}>{item.name}</Text>
+            </View>
+          ))
+        )}
+      </ScrollView>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { getFilms } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
@@ -16,21 +16,19 @@ export default function Films() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.screenHeader}>Films</Text>
-      <Input placeholder="Search films..." />
-      <FlatList
-        style={styles.list}
-        data={films}
-        keyExtractor={(item) => item.uid}
-        renderItem={({ item }) => (
-          <View style={styles.itemCard}>
-            <Text style={styles.itemTitle}>{item.properties.title}</Text>
-          </View>
-        )}
-        ListEmptyComponent={
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.screenHeader}>Films</Text>
+        <Input placeholder="Search films..." />
+        {films.length === 0 ? (
           <Text style={styles.emptyText}>Loading films...</Text>
-        }
-      />
+        ) : (
+          films.map((item) => (
+            <View style={styles.itemCard} key={item.uid}>
+              <Text style={styles.itemTitle}>{item.properties.title}</Text>
+            </View>
+          ))
+        )}
+      </ScrollView>
     </View>
   );
 }

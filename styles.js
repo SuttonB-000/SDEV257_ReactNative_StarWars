@@ -41,6 +41,9 @@ export default StyleSheet.create({
   list: {
     flexGrow: 1,
   },
+  scrollContent: {
+    paddingBottom: 32,
+  },
   itemCard: {
     backgroundColor: "#1f2937",
     borderRadius: 16,

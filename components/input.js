@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Button, TextInput } from "react-native";
+import { View, Button, TextInput, ScrollView } from "react-native";
 import { ConfirmationModal } from "./ConfirmationModal";
 import styles from "../styles.js";
 
@@ -20,7 +20,7 @@ export default function Input({ placeholder = "Search..." }) {
   }
 
   return (
-    <View style={styles.inputWrapper}>
+    <ScrollView contentContainerStyle={styles.inputWrapper} keyboardShouldPersistTaps="handled">
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -39,6 +39,6 @@ export default function Input({ placeholder = "Search..." }) {
         onConfirm={confirmSearch}
         onCancel={() => setShowModal(false)}
       />
-    </View>
+    </ScrollView>
   );
 }
