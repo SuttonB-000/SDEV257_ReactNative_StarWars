@@ -9,19 +9,19 @@ export default StyleSheet.create({
       ios: { paddingTop: 20 },
       android: { paddingTop: StatusBar.currentHeight },
     }),
-    box: {
-      height: 100,
-      justifyContent: "center",
-      alignSelf: "stretch",
-      alignItems: "center",
-      backgroundColor: "lightgray",
-      borderWidth: 1,
-      borderStyle: "solid",
-      borderColor: "darkslategray",
-    },
-    boxText: {
-      color: "darkslategray",
-      fontWeight: "bold",
-    },
+  },
+  box: {
+    height: 100,
+    justifyContent: "center",
+    alignSelf: "stretch",
+    alignItems: "center",
+    backgroundColor: "lightgray",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "darkslategray",
+  },
+  boxText: {
+    color: "darkslategray",
+    fontWeight: "bold",
   },
 });
