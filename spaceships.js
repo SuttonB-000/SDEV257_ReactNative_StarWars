@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Modal, TouchableOpacity, Pressable } from "react-native";
 import { getSpaceships } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
 
 export default function Spaceships() {
   const [spaceships, setSpaceships] = useState([]);
+  const [selectedShip, setSelectedShip] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getSpaceships().then((spaceships) => {
@@ -13,6 +15,16 @@ export default function Spaceships() {
       setSpaceships(spaceships.results);
     });
   }, []);
+
+  function openShipModal(ship) {
+    setSelectedShip(ship);
+    setModalVisible(true);
+  }
+
+  function closeModal() {
+    setModalVisible(false);
+    setSelectedShip(null);
+  }
 
   return (
     <View style={styles.container}>
@@ -23,12 +35,35 @@ export default function Spaceships() {
           <Text style={styles.emptyText}>Loading spaceships...</Text>
         ) : (
           spaceships.map((item) => (
-            <View style={styles.itemCard} key={item.uid ?? item.name}>
+            <TouchableOpacity
+              key={item.uid ?? item.name}
+              style={styles.itemCard}
+              onPress={() => openShipModal(item)}
+            >
               <Text style={styles.itemTitle}>{item.name}</Text>
-            </View>
+            </TouchableOpacity>
           ))
         )}
       </ScrollView>
+
+      <Modal
+        visible={modalVisible}
+        transparent
+        animationType="slide"
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+            <Text style={styles.modalTitle}>Starship Selected</Text>
+            <Text style={styles.modalMessage}>
+              You pressed: {selectedShip?.name}
+            </Text>
+            <Pressable style={styles.modalButton} onPress={closeModal}>
+              <Text style={styles.modalButtonText}>Close</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
