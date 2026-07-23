@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Modal, TouchableOpacity, Pressable } from "react-native";
+import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 import { getPlanets } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
@@ -48,6 +49,7 @@ export default function Planets() {
             </TouchableOpacity>
           ))
         )}
+        <Animated.View entering={SlideInLeft} exiting={SlideOutRight}>
           <Modal
             visible={modalVisible}
             transparent
@@ -64,7 +66,7 @@ export default function Planets() {
               </View>
               </View>
           </Modal>
-
+        </Animated.View>
        </ScrollView>
        </View>
           );

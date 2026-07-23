@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Modal, TouchableOpacity, Pressable } from "react-native";
+import Animated, {SlideInLeft, SlideOutRight } from "react-native-reanimated";
 import { getSpaceships } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
@@ -45,7 +46,7 @@ export default function Spaceships() {
           ))
         )}
       </ScrollView>
-
+    <Animated.View entering={SlideInLeft} exiting={SlideOutRight}>
       <Modal
         visible={modalVisible}
         transparent
@@ -64,6 +65,7 @@ export default function Spaceships() {
           </View>
         </View>
       </Modal>
+    </Animated.View>
     </View>
   );
 }

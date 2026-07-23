@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Modal, TouchableOpacity, Pressable } from "react-native";
+import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 import { getFilms } from "./Swapi.js";
 import styles from "./styles.js";
 import Input from "./components/input.js";
@@ -45,25 +46,27 @@ export default function Films() {
           ))
         )}
       </ScrollView>
+      <Animated.View entering={SlideInLeft} exiting={SlideOutRight}>
+        <Modal
+          visible={modalVisible}
+          transparent
+          animationType="slide"
+          onRequestClose={closeModal}
+        >
 
-      <Modal
-        visible={modalVisible}
-        transparent
-        animationType="slide"
-        onRequestClose={closeModal}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalBox}>
-            <Text style={styles.modalTitle}>Film Selected</Text>
-            <Text style={styles.modalMessage}>
-              You pressed: {selectedFilm?.properties.title}
-            </Text>
-            <Pressable style={styles.modalButton} onPress={closeModal}>
-              <Text style={styles.modalButtonText}>Close</Text>
-            </Pressable>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalBox}>
+              <Text style={styles.modalTitle}>Film Selected</Text>
+              <Text style={styles.modalMessage}>
+                You pressed: {selectedFilm?.properties.title}
+              </Text>
+              <Pressable style={styles.modalButton} onPress={closeModal}>
+                <Text style={styles.modalButtonText}>Close</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </Animated.View>
     </View>
   );
 }
